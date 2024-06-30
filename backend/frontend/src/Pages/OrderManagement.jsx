@@ -19,7 +19,7 @@ function OrderManagement() {
         },
       };
       const { data } = await axios.patch(
-        `http://127.0.0.1:8000/api/orders/${id}`,
+        `${window.location.origin}/api/orders/${id}`,
         {},
         config
       );
@@ -55,7 +55,7 @@ function OrderManagement() {
           },
         };
         const { data } = await axios.get(
-          "http://127.0.0.1:8000/api/orders",
+          `${window.location.origin}/api/orders`,
           config
         );
         setOrders(data.orders);

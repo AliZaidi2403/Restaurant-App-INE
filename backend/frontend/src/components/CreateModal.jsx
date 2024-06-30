@@ -86,7 +86,7 @@ function CreateModal({ items, setItems, user, id, children }) {
         },
       };
       const { data } = await axios.post(
-        "http://127.0.0.1:8000/api/items",
+        `${window.location.origin}/api/items`,
         { name, image, price, type },
         config
       );
@@ -133,7 +133,7 @@ function CreateModal({ items, setItems, user, id, children }) {
         },
       };
       const { data } = await axios.patch(
-        `http://127.0.0.1:8000/api/items/${id}`,
+        `${window.location.origin}/api/items/${id}`,
         body,
         config
       );

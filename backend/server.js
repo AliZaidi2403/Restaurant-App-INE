@@ -6,6 +6,7 @@ const userRouter = require("./routes/userRoutes");
 const itemRouter = require("./routes/itemRoutes");
 const orderRouter = require("./routes/orderRoutes");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
+const path = require("path");
 dotenv.config();
 connectDB();
 
@@ -20,6 +21,11 @@ app.use(express.json());
 app.use("/api/user", userRouter);
 app.use("/api/items", itemRouter);
 app.use("/api/orders", orderRouter);
+
+app.use(express.static(path.join(__dirname, "frontend", "build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
+});
 
 app.use(notFound);
 app.use(errorHandler);

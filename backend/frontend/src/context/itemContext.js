@@ -21,7 +21,7 @@ export const ItemProvider = ({ children }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      await axios.delete(`http://127.0.0.1:8000/api/items/${id}`, config);
+      await axios.delete(`${window.location.origin}/api/items/${id}`, config);
       setItems((items) => items.filter((item) => item._id !== id));
     } catch (err) {
       toast({
@@ -45,7 +45,7 @@ export const ItemProvider = ({ children }) => {
         };
 
         const { data } = await axios.get(
-          "http://127.0.0.1:8000/api/items",
+          `${window.location.origin}/api/items`,
           config
         );
         console.log(data.items);

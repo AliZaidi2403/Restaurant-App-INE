@@ -31,7 +31,7 @@ function SignIn() {
       };
 
       const { data } = await axios.post(
-        "http://127.0.0.1:8000/api/user/signup",
+        `${window.location.origin}/api/user/signup`,
         {
           name,
           email,

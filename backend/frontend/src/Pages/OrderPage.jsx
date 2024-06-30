@@ -42,7 +42,7 @@ function OrderPage() {
       };
 
       const { data } = await axios.post(
-        "http://127.0.0.1:8000/api/orders",
+        `${window.location.origin}/api/orders`,
         {
           amount: totalPrice,
           address,
