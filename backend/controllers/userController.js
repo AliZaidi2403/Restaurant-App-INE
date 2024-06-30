@@ -3,6 +3,7 @@ const User = require("./../models/userModel");
 const generateToken = require("./../config/generateToken");
 
 const registerUser = asyncHandler(async (req, res) => {
+  console.log("Hello");
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
     res.status(400);
@@ -24,6 +25,7 @@ const registerUser = asyncHandler(async (req, res) => {
       name,
       email,
       token: generateToken(user._id),
+      role: user.role,
     });
   } else {
     res.status(400);
@@ -33,7 +35,9 @@ const registerUser = asyncHandler(async (req, res) => {
 
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
+
   const user = await User.findOne({ email });
+  console.log(user);
   if (!user) {
     throw new Error("User with this email does not exist");
   } else if (await user.matchPassword(password)) {
@@ -42,6 +46,7 @@ const authUser = asyncHandler(async (req, res) => {
       name: user.name,
       email,
       token: generateToken(user._id),
+      role: user.role,
     });
   } else {
     throw new Error("Incorrect Password");

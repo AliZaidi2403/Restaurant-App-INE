@@ -10,11 +10,11 @@ const {
 const protect = require("../middlewares/authmiddleware");
 const router = express.Router();
 
-router.get("/", protect, getAllItems);
+router.get("/", getAllItems);
+router.post("/", protect, restrictTo, createItem);
 router
   .route("/:id")
   .get(protect, getItem)
-  .post(protect, restrictTo, createItem)
   .patch(protect, restrictTo, updateItem)
   .delete(protect, restrictTo, deleteItem);
 

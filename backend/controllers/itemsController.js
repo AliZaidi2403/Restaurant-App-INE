@@ -4,10 +4,10 @@ const Item = require("../models/itemModel");
 const restrictTo = asyncHandler(async (req, res, next) => {
   const user = await req.user;
   const { role } = user;
-  if (role === "admin") {
-    next();
+  if (!role === "admin") {
+    throw new Error("You are not allowed to visit this path");
   }
-  throw new Error("You are not allowed to visit this path");
+  next();
 });
 
 const getItem = asyncHandler(async (req, res) => {
@@ -32,6 +32,7 @@ const getAllItems = asyncHandler(async (req, res) => {
 });
 
 const createItem = asyncHandler(async (req, res) => {
+  console.log(req.body);
   const newItem = await Item.create(req.body);
   if (!newItem) {
     throw new Error("Error while creating item");

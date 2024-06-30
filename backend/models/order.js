@@ -4,9 +4,16 @@ const orderSchema = mongoose.Schema(
   {
     items: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Item",
-        required: true,
+        item: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Item",
+          required: true,
+        },
+        quantity: {
+          type: Number,
+          required: true,
+          default: 1,
+        },
       },
     ],
     userId: {
@@ -22,6 +29,15 @@ const orderSchema = mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+    },
+    phoneNumber: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    status: {
+      type: Boolean,
+      default: false,
     },
   },
   {

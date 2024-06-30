@@ -20,10 +20,6 @@ const itemSchema = mongoose.Schema({
     required: true,
     trim: true,
   },
-  serving: {
-    type: Number,
-    required: true,
-  },
 });
 
 const Item = mongoose.model("Item", itemSchema);
